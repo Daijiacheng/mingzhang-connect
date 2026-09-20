@@ -10,33 +10,51 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DigitalMarketingRouteImport } from './routes/digital-marketing'
+import { Route as DigitalMarketingIndexRouteImport } from './routes/digital-marketing.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DigitalMarketingRoute = DigitalMarketingRouteImport.update({
+  id: '/digital-marketing',
+  path: '/digital-marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DigitalMarketingIndexRoute = DigitalMarketingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DigitalMarketingRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/digital-marketing': typeof DigitalMarketingRouteWithChildren
+  '/digital-marketing/': typeof DigitalMarketingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/digital-marketing': typeof DigitalMarketingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/digital-marketing': typeof DigitalMarketingRouteWithChildren
+  '/digital-marketing/': typeof DigitalMarketingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/digital-marketing' | '/digital-marketing/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/digital-marketing'
+  id: '__root__' | '/' | '/digital-marketing' | '/digital-marketing/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DigitalMarketingRoute: typeof DigitalMarketingRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +66,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/digital-marketing': {
+      id: '/digital-marketing'
+      path: '/digital-marketing'
+      fullPath: '/digital-marketing'
+      preLoaderRoute: typeof DigitalMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/digital-marketing/': {
+      id: '/digital-marketing/'
+      path: '/'
+      fullPath: '/digital-marketing/'
+      preLoaderRoute: typeof DigitalMarketingIndexRouteImport
+      parentRoute: typeof DigitalMarketingRoute
+    }
   }
 }
 
+interface DigitalMarketingRouteChildren {
+  DigitalMarketingIndexRoute: typeof DigitalMarketingIndexRoute
+}
+
+const DigitalMarketingRouteChildren: DigitalMarketingRouteChildren = {
+  DigitalMarketingIndexRoute: DigitalMarketingIndexRoute,
+}
+
+const DigitalMarketingRouteWithChildren =
+  DigitalMarketingRoute._addFileChildren(DigitalMarketingRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DigitalMarketingRoute: DigitalMarketingRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
