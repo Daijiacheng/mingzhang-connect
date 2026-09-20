@@ -10,8 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as AiImplementationRouteImport } from './routes/ai-implementation'
+import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as DigitalMarketingRouteImport } from './routes/digital-marketing'
+import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as DigitalMarketingIndexRouteImport } from './routes/digital-marketing.index'
 import { Route as DigitalMarketingChannelMarketingRouteImport } from './routes/digital-marketing.channel-marketing'
 import { Route as DigitalMarketingContentSearchRouteImport } from './routes/digital-marketing.content-search'
@@ -22,14 +26,34 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiImplementationRoute = AiImplementationRouteImport.update({
   id: '/ai-implementation',
   path: '/ai-implementation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApproachRoute = ApproachRouteImport.update({
+  id: '/approach',
+  path: '/approach',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DigitalMarketingRoute = DigitalMarketingRouteImport.update({
   id: '/digital-marketing',
   path: '/digital-marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DigitalMarketingIndexRoute = DigitalMarketingIndexRouteImport.update({
@@ -58,8 +82,12 @@ const DigitalMarketingWebsitesRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-implementation': typeof AiImplementationRoute
+  '/approach': typeof ApproachRoute
   '/digital-marketing': typeof DigitalMarketingRouteWithChildren
+  '/insights': typeof InsightsRoute
+  '/privacy': typeof PrivacyRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
@@ -67,7 +95,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-implementation': typeof AiImplementationRoute
+  '/approach': typeof ApproachRoute
+  '/insights': typeof InsightsRoute
+  '/privacy': typeof PrivacyRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
@@ -76,8 +108,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-implementation': typeof AiImplementationRoute
+  '/approach': typeof ApproachRoute
   '/digital-marketing': typeof DigitalMarketingRouteWithChildren
+  '/insights': typeof InsightsRoute
+  '/privacy': typeof PrivacyRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
@@ -87,8 +123,12 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/ai-implementation'
+    | '/approach'
     | '/digital-marketing'
+    | '/insights'
+    | '/privacy'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
     | '/digital-marketing/websites'
@@ -96,7 +136,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/ai-implementation'
+    | '/approach'
+    | '/insights'
+    | '/privacy'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
     | '/digital-marketing/websites'
@@ -104,8 +148,12 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/ai-implementation'
+    | '/approach'
     | '/digital-marketing'
+    | '/insights'
+    | '/privacy'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
     | '/digital-marketing/websites'
@@ -114,8 +162,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AiImplementationRoute: typeof AiImplementationRoute
+  ApproachRoute: typeof ApproachRoute
   DigitalMarketingRoute: typeof DigitalMarketingRouteWithChildren
+  InsightsRoute: typeof InsightsRoute
+  PrivacyRoute: typeof PrivacyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -127,6 +179,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-implementation': {
       id: '/ai-implementation'
       path: '/ai-implementation'
@@ -134,11 +193,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiImplementationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/approach': {
+      id: '/approach'
+      path: '/approach'
+      fullPath: '/approach'
+      preLoaderRoute: typeof ApproachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/digital-marketing': {
       id: '/digital-marketing'
       path: '/digital-marketing'
       fullPath: '/digital-marketing'
       preLoaderRoute: typeof DigitalMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/digital-marketing/': {
@@ -191,8 +271,12 @@ const DigitalMarketingRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AiImplementationRoute: AiImplementationRoute,
+  ApproachRoute: ApproachRoute,
   DigitalMarketingRoute: DigitalMarketingRouteWithChildren,
+  InsightsRoute: InsightsRoute,
+  PrivacyRoute: PrivacyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
