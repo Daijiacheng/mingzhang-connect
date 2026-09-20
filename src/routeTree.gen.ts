@@ -10,12 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiImplementationRouteImport } from './routes/ai-implementation'
 import { Route as DigitalMarketingRouteImport } from './routes/digital-marketing'
 import { Route as DigitalMarketingIndexRouteImport } from './routes/digital-marketing.index'
+import { Route as DigitalMarketingChannelMarketingRouteImport } from './routes/digital-marketing.channel-marketing'
+import { Route as DigitalMarketingContentSearchRouteImport } from './routes/digital-marketing.content-search'
+import { Route as DigitalMarketingWebsitesRouteImport } from './routes/digital-marketing.websites'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiImplementationRoute = AiImplementationRouteImport.update({
+  id: '/ai-implementation',
+  path: '/ai-implementation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DigitalMarketingRoute = DigitalMarketingRouteImport.update({
@@ -28,32 +37,84 @@ const DigitalMarketingIndexRoute = DigitalMarketingIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DigitalMarketingRoute,
 } as any)
+const DigitalMarketingChannelMarketingRoute =
+  DigitalMarketingChannelMarketingRouteImport.update({
+    id: '/channel-marketing',
+    path: '/channel-marketing',
+    getParentRoute: () => DigitalMarketingRoute,
+  } as any)
+const DigitalMarketingContentSearchRoute =
+  DigitalMarketingContentSearchRouteImport.update({
+    id: '/content-search',
+    path: '/content-search',
+    getParentRoute: () => DigitalMarketingRoute,
+  } as any)
+const DigitalMarketingWebsitesRoute =
+  DigitalMarketingWebsitesRouteImport.update({
+    id: '/websites',
+    path: '/websites',
+    getParentRoute: () => DigitalMarketingRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-implementation': typeof AiImplementationRoute
   '/digital-marketing': typeof DigitalMarketingRouteWithChildren
+  '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
+  '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
+  '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
   '/digital-marketing/': typeof DigitalMarketingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-implementation': typeof AiImplementationRoute
+  '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
+  '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
+  '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
   '/digital-marketing': typeof DigitalMarketingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-implementation': typeof AiImplementationRoute
   '/digital-marketing': typeof DigitalMarketingRouteWithChildren
+  '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
+  '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
+  '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
   '/digital-marketing/': typeof DigitalMarketingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/digital-marketing' | '/digital-marketing/'
+  fullPaths:
+    | '/'
+    | '/ai-implementation'
+    | '/digital-marketing'
+    | '/digital-marketing/channel-marketing'
+    | '/digital-marketing/content-search'
+    | '/digital-marketing/websites'
+    | '/digital-marketing/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/digital-marketing'
-  id: '__root__' | '/' | '/digital-marketing' | '/digital-marketing/'
+  to:
+    | '/'
+    | '/ai-implementation'
+    | '/digital-marketing/channel-marketing'
+    | '/digital-marketing/content-search'
+    | '/digital-marketing/websites'
+    | '/digital-marketing'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai-implementation'
+    | '/digital-marketing'
+    | '/digital-marketing/channel-marketing'
+    | '/digital-marketing/content-search'
+    | '/digital-marketing/websites'
+    | '/digital-marketing/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiImplementationRoute: typeof AiImplementationRoute
   DigitalMarketingRoute: typeof DigitalMarketingRouteWithChildren
 }
 
@@ -64,6 +125,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-implementation': {
+      id: '/ai-implementation'
+      path: '/ai-implementation'
+      fullPath: '/ai-implementation'
+      preLoaderRoute: typeof AiImplementationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/digital-marketing': {
@@ -80,14 +148,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DigitalMarketingIndexRouteImport
       parentRoute: typeof DigitalMarketingRoute
     }
+    '/digital-marketing/channel-marketing': {
+      id: '/digital-marketing/channel-marketing'
+      path: '/channel-marketing'
+      fullPath: '/digital-marketing/channel-marketing'
+      preLoaderRoute: typeof DigitalMarketingChannelMarketingRouteImport
+      parentRoute: typeof DigitalMarketingRoute
+    }
+    '/digital-marketing/content-search': {
+      id: '/digital-marketing/content-search'
+      path: '/content-search'
+      fullPath: '/digital-marketing/content-search'
+      preLoaderRoute: typeof DigitalMarketingContentSearchRouteImport
+      parentRoute: typeof DigitalMarketingRoute
+    }
+    '/digital-marketing/websites': {
+      id: '/digital-marketing/websites'
+      path: '/websites'
+      fullPath: '/digital-marketing/websites'
+      preLoaderRoute: typeof DigitalMarketingWebsitesRouteImport
+      parentRoute: typeof DigitalMarketingRoute
+    }
   }
 }
 
 interface DigitalMarketingRouteChildren {
+  DigitalMarketingChannelMarketingRoute: typeof DigitalMarketingChannelMarketingRoute
+  DigitalMarketingContentSearchRoute: typeof DigitalMarketingContentSearchRoute
+  DigitalMarketingWebsitesRoute: typeof DigitalMarketingWebsitesRoute
   DigitalMarketingIndexRoute: typeof DigitalMarketingIndexRoute
 }
 
 const DigitalMarketingRouteChildren: DigitalMarketingRouteChildren = {
+  DigitalMarketingChannelMarketingRoute: DigitalMarketingChannelMarketingRoute,
+  DigitalMarketingContentSearchRoute: DigitalMarketingContentSearchRoute,
+  DigitalMarketingWebsitesRoute: DigitalMarketingWebsitesRoute,
   DigitalMarketingIndexRoute: DigitalMarketingIndexRoute,
 }
 
@@ -96,6 +191,7 @@ const DigitalMarketingRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiImplementationRoute: AiImplementationRoute,
   DigitalMarketingRoute: DigitalMarketingRouteWithChildren,
 }
 export const routeTree = rootRouteImport
