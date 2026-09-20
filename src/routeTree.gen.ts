@@ -13,9 +13,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AiImplementationRouteImport } from './routes/ai-implementation'
 import { Route as ApproachRouteImport } from './routes/approach'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DigitalMarketingRouteImport } from './routes/digital-marketing'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ReadinessCheckerRouteImport } from './routes/readiness-checker'
 import { Route as DigitalMarketingIndexRouteImport } from './routes/digital-marketing.index'
 import { Route as DigitalMarketingChannelMarketingRouteImport } from './routes/digital-marketing.channel-marketing'
 import { Route as DigitalMarketingContentSearchRouteImport } from './routes/digital-marketing.content-search'
@@ -41,6 +43,11 @@ const ApproachRoute = ApproachRouteImport.update({
   path: '/approach',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DigitalMarketingRoute = DigitalMarketingRouteImport.update({
   id: '/digital-marketing',
   path: '/digital-marketing',
@@ -54,6 +61,11 @@ const InsightsRoute = InsightsRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReadinessCheckerRoute = ReadinessCheckerRouteImport.update({
+  id: '/readiness-checker',
+  path: '/readiness-checker',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DigitalMarketingIndexRoute = DigitalMarketingIndexRouteImport.update({
@@ -85,9 +97,11 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/ai-implementation': typeof AiImplementationRoute
   '/approach': typeof ApproachRoute
+  '/contact': typeof ContactRoute
   '/digital-marketing': typeof DigitalMarketingRouteWithChildren
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
+  '/readiness-checker': typeof ReadinessCheckerRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
@@ -98,8 +112,10 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/ai-implementation': typeof AiImplementationRoute
   '/approach': typeof ApproachRoute
+  '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
+  '/readiness-checker': typeof ReadinessCheckerRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
@@ -111,9 +127,11 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/ai-implementation': typeof AiImplementationRoute
   '/approach': typeof ApproachRoute
+  '/contact': typeof ContactRoute
   '/digital-marketing': typeof DigitalMarketingRouteWithChildren
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
+  '/readiness-checker': typeof ReadinessCheckerRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
@@ -126,9 +144,11 @@ export interface FileRouteTypes {
     | '/about'
     | '/ai-implementation'
     | '/approach'
+    | '/contact'
     | '/digital-marketing'
     | '/insights'
     | '/privacy'
+    | '/readiness-checker'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
     | '/digital-marketing/websites'
@@ -139,8 +159,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/ai-implementation'
     | '/approach'
+    | '/contact'
     | '/insights'
     | '/privacy'
+    | '/readiness-checker'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
     | '/digital-marketing/websites'
@@ -151,9 +173,11 @@ export interface FileRouteTypes {
     | '/about'
     | '/ai-implementation'
     | '/approach'
+    | '/contact'
     | '/digital-marketing'
     | '/insights'
     | '/privacy'
+    | '/readiness-checker'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
     | '/digital-marketing/websites'
@@ -165,9 +189,11 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AiImplementationRoute: typeof AiImplementationRoute
   ApproachRoute: typeof ApproachRoute
+  ContactRoute: typeof ContactRoute
   DigitalMarketingRoute: typeof DigitalMarketingRouteWithChildren
   InsightsRoute: typeof InsightsRoute
   PrivacyRoute: typeof PrivacyRoute
+  ReadinessCheckerRoute: typeof ReadinessCheckerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -200,6 +226,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApproachRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/digital-marketing': {
       id: '/digital-marketing'
       path: '/digital-marketing'
@@ -219,6 +252,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/readiness-checker': {
+      id: '/readiness-checker'
+      path: '/readiness-checker'
+      fullPath: '/readiness-checker'
+      preLoaderRoute: typeof ReadinessCheckerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/digital-marketing/': {
@@ -274,9 +314,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AiImplementationRoute: AiImplementationRoute,
   ApproachRoute: ApproachRoute,
+  ContactRoute: ContactRoute,
   DigitalMarketingRoute: DigitalMarketingRouteWithChildren,
   InsightsRoute: InsightsRoute,
   PrivacyRoute: PrivacyRoute,
+  ReadinessCheckerRoute: ReadinessCheckerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
