@@ -18,7 +18,7 @@ function Page() {
   const [answers,setAnswers]=useState<Record<string,number>>({});
   const complete=Object.keys(answers).length===questions.length;
   const scores=useMemo(()=>{
-    const channel=answers.channel ?? 0, team=answers.team ?? 0, pain=answers.pain ?? 0;
+    const channel=answers["channel"] ?? 0, team=answers["team"] ?? 0, pain=answers["pain"] ?? 0;
     return [
       {name:"承接能力",score:Math.min(92,32+channel*16+team*5)},
       {name:"可发现性",score:Math.min(92,28+channel*15+(pain===1?6:0))},
