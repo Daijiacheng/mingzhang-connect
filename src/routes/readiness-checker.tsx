@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { PageContainer, PageIntro } from "@/components/content-blocks";
 
-export const Route = createFileRoute("/readiness-checker")({ head: () => ({ meta: [{ title: "工业出海营销与 AI 落地准备度自测 | 明章" }, { name: "description", content: "按企业品类、现有渠道、数字化痛点与团队配置，快速判断承接能力、可发现性、触达链路和 AI 介入场景。" }, { property: "og:title", content: "工业出海营销与 AI 落地准备度自测 | 明章" }, { property: "og:description", content: "获得四维现状诊断与客观行动优先级，不推销固定套餐。" }, { property: "og:type", content: "website" }, { property: "og:url", content: "/readiness-checker" }, { name: "twitter:card", content: "summary_large_image" }], links: [{ rel: "canonical", href: "/readiness-checker" }] }), component: Page });
+export const Route = createFileRoute("/readiness-checker")({ staticData: { sitemap: true }, head: () => ({ meta: [{ title: "工业出海营销与 AI 落地准备度自测 | 明章" }, { name: "description", content: "按企业品类、现有渠道、数字化痛点与团队配置，快速判断承接能力、可发现性、触达链路和 AI 介入场景。" }, { property: "og:title", content: "工业出海营销与 AI 落地准备度自测 | 明章" }, { property: "og:description", content: "获得四维现状诊断与客观行动优先级，不推销固定套餐。" }, { property: "og:type", content: "website" }, { property: "og:url", content: "/readiness-checker" }, { name: "twitter:card", content: "summary_large_image" }], links: [{ rel: "canonical", href: "/readiness-checker" }] }), component: Page });
 
 const questions = [
   { key:"category", title:"企业所属工业细分品类", options:["机械设备与自动化","零部件与精密制造","材料与工业耗材","暂不确定或其他"] },
