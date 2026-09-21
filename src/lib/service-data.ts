@@ -6,7 +6,7 @@ export type ServiceChannel = "channel_a" | "channel_b";
 
 export type CoreService = {
   slug: string;
-  to: string;
+  to: "/digital-marketing/strategy" | "/digital-marketing/content-search" | "/digital-marketing/paid-media" | "/digital-marketing/analytics" | "/ai-implementation" | "/digital-marketing/channel-marketing";
   category: "出海增长" | "实体 AI";
   code: string;
   title: string;
