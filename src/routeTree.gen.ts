@@ -18,6 +18,7 @@ import { Route as DigitalMarketingRouteImport } from './routes/digital-marketing
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReadinessCheckerRouteImport } from './routes/readiness-checker'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DigitalMarketingIndexRouteImport } from './routes/digital-marketing.index'
 import { Route as DigitalMarketingChannelMarketingRouteImport } from './routes/digital-marketing.channel-marketing'
 import { Route as DigitalMarketingContentSearchRouteImport } from './routes/digital-marketing.content-search'
@@ -68,6 +69,11 @@ const ReadinessCheckerRoute = ReadinessCheckerRouteImport.update({
   path: '/readiness-checker',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DigitalMarketingIndexRoute = DigitalMarketingIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
   '/readiness-checker': typeof ReadinessCheckerRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
   '/readiness-checker': typeof ReadinessCheckerRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/insights': typeof InsightsRoute
   '/privacy': typeof PrivacyRoute
   '/readiness-checker': typeof ReadinessCheckerRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy'
     | '/readiness-checker'
+    | '/sitemap.xml'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
     | '/digital-marketing/websites'
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy'
     | '/readiness-checker'
+    | '/sitemap.xml'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
     | '/digital-marketing/websites'
@@ -178,6 +189,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy'
     | '/readiness-checker'
+    | '/sitemap.xml'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
     | '/digital-marketing/websites'
@@ -194,6 +206,7 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRoute
   PrivacyRoute: typeof PrivacyRoute
   ReadinessCheckerRoute: typeof ReadinessCheckerRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -261,6 +274,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReadinessCheckerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/digital-marketing/': {
       id: '/digital-marketing/'
       path: '/'
@@ -319,6 +339,7 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRoute,
   PrivacyRoute: PrivacyRoute,
   ReadinessCheckerRoute: ReadinessCheckerRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

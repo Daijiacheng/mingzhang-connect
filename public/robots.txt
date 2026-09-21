@@ -24,3 +24,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://mingzhang-connect.lovable.app/sitemap.xml

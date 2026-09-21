@@ -6,6 +6,7 @@ import { services, workflow } from "@/lib/site-data";
 import workshopImage from "@/assets/mingzhang-industrial-workshop.jpg";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "B2B 出海数字营销与企业 AI 落地 | 明章" },
