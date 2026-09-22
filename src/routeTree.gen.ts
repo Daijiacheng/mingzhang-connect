@@ -20,8 +20,11 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReadinessCheckerRouteImport } from './routes/readiness-checker'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DigitalMarketingIndexRouteImport } from './routes/digital-marketing.index'
+import { Route as DigitalMarketingAnalyticsRouteImport } from './routes/digital-marketing.analytics'
 import { Route as DigitalMarketingChannelMarketingRouteImport } from './routes/digital-marketing.channel-marketing'
 import { Route as DigitalMarketingContentSearchRouteImport } from './routes/digital-marketing.content-search'
+import { Route as DigitalMarketingPaidMediaRouteImport } from './routes/digital-marketing.paid-media'
+import { Route as DigitalMarketingStrategyRouteImport } from './routes/digital-marketing.strategy'
 import { Route as DigitalMarketingWebsitesRouteImport } from './routes/digital-marketing.websites'
 
 const IndexRoute = IndexRouteImport.update({
@@ -79,6 +82,12 @@ const DigitalMarketingIndexRoute = DigitalMarketingIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DigitalMarketingRoute,
 } as any)
+const DigitalMarketingAnalyticsRoute =
+  DigitalMarketingAnalyticsRouteImport.update({
+    id: '/analytics',
+    path: '/analytics',
+    getParentRoute: () => DigitalMarketingRoute,
+  } as any)
 const DigitalMarketingChannelMarketingRoute =
   DigitalMarketingChannelMarketingRouteImport.update({
     id: '/channel-marketing',
@@ -89,6 +98,18 @@ const DigitalMarketingContentSearchRoute =
   DigitalMarketingContentSearchRouteImport.update({
     id: '/content-search',
     path: '/content-search',
+    getParentRoute: () => DigitalMarketingRoute,
+  } as any)
+const DigitalMarketingPaidMediaRoute =
+  DigitalMarketingPaidMediaRouteImport.update({
+    id: '/paid-media',
+    path: '/paid-media',
+    getParentRoute: () => DigitalMarketingRoute,
+  } as any)
+const DigitalMarketingStrategyRoute =
+  DigitalMarketingStrategyRouteImport.update({
+    id: '/strategy',
+    path: '/strategy',
     getParentRoute: () => DigitalMarketingRoute,
   } as any)
 const DigitalMarketingWebsitesRoute =
@@ -109,8 +130,11 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/readiness-checker': typeof ReadinessCheckerRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/digital-marketing/analytics': typeof DigitalMarketingAnalyticsRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
+  '/digital-marketing/paid-media': typeof DigitalMarketingPaidMediaRoute
+  '/digital-marketing/strategy': typeof DigitalMarketingStrategyRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
   '/digital-marketing/': typeof DigitalMarketingIndexRoute
 }
@@ -124,8 +148,11 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/readiness-checker': typeof ReadinessCheckerRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/digital-marketing/analytics': typeof DigitalMarketingAnalyticsRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
+  '/digital-marketing/paid-media': typeof DigitalMarketingPaidMediaRoute
+  '/digital-marketing/strategy': typeof DigitalMarketingStrategyRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
   '/digital-marketing': typeof DigitalMarketingIndexRoute
 }
@@ -141,8 +168,11 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/readiness-checker': typeof ReadinessCheckerRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/digital-marketing/analytics': typeof DigitalMarketingAnalyticsRoute
   '/digital-marketing/channel-marketing': typeof DigitalMarketingChannelMarketingRoute
   '/digital-marketing/content-search': typeof DigitalMarketingContentSearchRoute
+  '/digital-marketing/paid-media': typeof DigitalMarketingPaidMediaRoute
+  '/digital-marketing/strategy': typeof DigitalMarketingStrategyRoute
   '/digital-marketing/websites': typeof DigitalMarketingWebsitesRoute
   '/digital-marketing/': typeof DigitalMarketingIndexRoute
 }
@@ -159,8 +189,11 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/readiness-checker'
     | '/sitemap.xml'
+    | '/digital-marketing/analytics'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
+    | '/digital-marketing/paid-media'
+    | '/digital-marketing/strategy'
     | '/digital-marketing/websites'
     | '/digital-marketing/'
   fileRoutesByTo: FileRoutesByTo
@@ -174,8 +207,11 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/readiness-checker'
     | '/sitemap.xml'
+    | '/digital-marketing/analytics'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
+    | '/digital-marketing/paid-media'
+    | '/digital-marketing/strategy'
     | '/digital-marketing/websites'
     | '/digital-marketing'
   id:
@@ -190,8 +226,11 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/readiness-checker'
     | '/sitemap.xml'
+    | '/digital-marketing/analytics'
     | '/digital-marketing/channel-marketing'
     | '/digital-marketing/content-search'
+    | '/digital-marketing/paid-media'
+    | '/digital-marketing/strategy'
     | '/digital-marketing/websites'
     | '/digital-marketing/'
   fileRoutesById: FileRoutesById
@@ -288,6 +327,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DigitalMarketingIndexRouteImport
       parentRoute: typeof DigitalMarketingRoute
     }
+    '/digital-marketing/analytics': {
+      id: '/digital-marketing/analytics'
+      path: '/analytics'
+      fullPath: '/digital-marketing/analytics'
+      preLoaderRoute: typeof DigitalMarketingAnalyticsRouteImport
+      parentRoute: typeof DigitalMarketingRoute
+    }
     '/digital-marketing/channel-marketing': {
       id: '/digital-marketing/channel-marketing'
       path: '/channel-marketing'
@@ -302,6 +348,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DigitalMarketingContentSearchRouteImport
       parentRoute: typeof DigitalMarketingRoute
     }
+    '/digital-marketing/paid-media': {
+      id: '/digital-marketing/paid-media'
+      path: '/paid-media'
+      fullPath: '/digital-marketing/paid-media'
+      preLoaderRoute: typeof DigitalMarketingPaidMediaRouteImport
+      parentRoute: typeof DigitalMarketingRoute
+    }
+    '/digital-marketing/strategy': {
+      id: '/digital-marketing/strategy'
+      path: '/strategy'
+      fullPath: '/digital-marketing/strategy'
+      preLoaderRoute: typeof DigitalMarketingStrategyRouteImport
+      parentRoute: typeof DigitalMarketingRoute
+    }
     '/digital-marketing/websites': {
       id: '/digital-marketing/websites'
       path: '/websites'
@@ -313,15 +373,21 @@ declare module '@tanstack/react-router' {
 }
 
 interface DigitalMarketingRouteChildren {
+  DigitalMarketingAnalyticsRoute: typeof DigitalMarketingAnalyticsRoute
   DigitalMarketingChannelMarketingRoute: typeof DigitalMarketingChannelMarketingRoute
   DigitalMarketingContentSearchRoute: typeof DigitalMarketingContentSearchRoute
+  DigitalMarketingPaidMediaRoute: typeof DigitalMarketingPaidMediaRoute
+  DigitalMarketingStrategyRoute: typeof DigitalMarketingStrategyRoute
   DigitalMarketingWebsitesRoute: typeof DigitalMarketingWebsitesRoute
   DigitalMarketingIndexRoute: typeof DigitalMarketingIndexRoute
 }
 
 const DigitalMarketingRouteChildren: DigitalMarketingRouteChildren = {
+  DigitalMarketingAnalyticsRoute: DigitalMarketingAnalyticsRoute,
   DigitalMarketingChannelMarketingRoute: DigitalMarketingChannelMarketingRoute,
   DigitalMarketingContentSearchRoute: DigitalMarketingContentSearchRoute,
+  DigitalMarketingPaidMediaRoute: DigitalMarketingPaidMediaRoute,
+  DigitalMarketingStrategyRoute: DigitalMarketingStrategyRoute,
   DigitalMarketingWebsitesRoute: DigitalMarketingWebsitesRoute,
   DigitalMarketingIndexRoute: DigitalMarketingIndexRoute,
 }
